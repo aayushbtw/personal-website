@@ -25,7 +25,16 @@ const { Content } = await entry.render();
 
       {
         entry.data.tags.length > 0 && (
-          <div class="space-x-2 text-sm pt-4">hello</div>
+          <div class="space-x-2 text-sm pt-4">
+            {entry.data.tags.map((tag) => (
+              <a
+                href={`/posts/tag/${tag}`}
+                class="bg-secondary px-3 py-1 rounded-lg"
+              >
+                {tag}
+              </a>
+            ))}
+          </div>
         )
       }
     </div>
