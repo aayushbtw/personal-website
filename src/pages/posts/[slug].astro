@@ -16,7 +16,7 @@ const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
-<BaseLayout>
+<BaseLayout title={entry.data.title}>
   <section>
     <div>
       <Header date={entry.data.date} class="leading-6 font-bold">

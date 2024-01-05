@@ -24,7 +24,7 @@ const { tag } = Astro.params;
 const { entry } = Astro.props;
 ---
 
-<BaseLayout>
+<BaseLayout title={`Posts by tag: ${tag}`}>
   <section>
     <Header>Filtered by tag: <span class="font-bold">{tag}</span></Header>
     <ListPosts posts={entry} />

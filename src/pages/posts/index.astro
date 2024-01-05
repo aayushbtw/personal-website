@@ -8,7 +8,7 @@ import ListPosts from "@/components/ListPosts";
 const posts = await getCollection("posts");
 ---
 
-<BaseLayout>
+<BaseLayout title="All Posts">
   <section>
     <Header>All Posts</Header>
     <ListPosts {posts} />

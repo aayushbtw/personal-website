@@ -6,9 +6,10 @@ import { ViewTransitions } from "astro:transitions";
 
 export interface Props {
   class?: string;
+  title?: string;
 }
 
-const { class: className } = Astro.props;
+const { class: className, title = "Aayush" } = Astro.props;
 ---
 
 <html lang="en">
@@ -18,7 +19,7 @@ const { class: className } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <link rel="sitemap" href="/sitemap-index.xml" />
-    <title>Astro</title>
+    <title>{title}</title>
     <ViewTransitions />
   </head>
   <body class="py-16 px-8 mx-auto max-w-3xl">
