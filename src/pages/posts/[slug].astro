@@ -1,0 +1,47 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "@/layouts/Base";
+import Header from "@/components/Header";
+
+export async function getStaticPaths() {
+  const post = await getCollection("posts");
+  return post.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+---
+
+<BaseLayout>
+  <section>
+    <div>
+      <Header date={entry.data.date} class="leading-6 font-bold">
+        {entry.data.title}
+      </Header>
+
+      {
+        entry.data.tags.length > 0 && (
+          <div class="space-x-2 text-sm pt-4">hello</div>
+        )
+      }
+    </div>
+
+    <article
+      class:list={[
+        "max-w-none text-secondary prose prose-invert ",
+        "prose-headings:text-primary prose-p:text-secondary prose-headings:text-base",
+        "prose-hr:border-primary prose-tr:border-primary prose-thead:border-primary",
+        "prose-li:my-0.5",
+        "prose-a:text-secondary prose-a:underline-offset-4 prose-a:decoration-primary",
+      ]}
+    >
+      <Content />
+    </article>
+  </section>
+</BaseLayout>
+
+<style></style>

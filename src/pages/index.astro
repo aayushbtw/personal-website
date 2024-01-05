@@ -1,0 +1,30 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "@/layouts/Base";
+import Header from "@/components/Header";
+import ListPosts from "@/components/ListPosts";
+
+const posts = await getCollection("posts");
+---
+
+<BaseLayout>
+  <section>
+    <Header>Hi, I'm Aayush</Header>
+    <div>
+      <p>web enthusiast.</p>
+      <p>
+        experienced in
+        <a href="https://react.dev/" class="link">reactjs</a>,
+        <a href="https://nextjs.org/" class="link">nextjs</a>,
+        <a href="https://kit.svelte.dev/" class="link">sveltekit</a> and
+        <a href="https://astro.build/" class="link">astro</a>.
+      </p>
+    </div>
+  </section>
+
+  <section>
+    <Header>Recent Posts</Header>
+    <ListPosts {posts} limit={5} />
+  </section>
+</BaseLayout>

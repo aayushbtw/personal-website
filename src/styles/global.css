@@ -1,0 +1,47 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --bg-primary: 18 18 18;
+    --bg-secondary: 28 28 28;
+
+    --text-primary: 42 242 242;
+    --text-secondary: 133 133 133;
+    --text-teritary: 150 150 150;
+    --text-link: 210 100% 72%;
+
+    --border-primary: 255 255 255;
+  }
+
+  body {
+    @apply scroll-smooth min-h-screen antialiased bg-primary text-secondary text-base;
+  }
+
+  section {
+    @apply flex flex-col gap-3;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-primary font-medium;
+  }
+
+  /* .link {
+    @apply underline decoration-primary/10 hover:text-gradient-to-black;
+    text-underline-offset: 5px;
+  } */
+}
+
+/* Your Tailwind CSS configuration or styles */
+@layer utilities {
+  .link {
+    @apply underline decoration-primary/10 hover:decoration-primary/20 transition-all;
+    text-underline-offset: 5px;
+  }
+}

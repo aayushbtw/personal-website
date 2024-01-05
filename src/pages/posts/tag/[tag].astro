@@ -1,0 +1,32 @@
+---
+import { getCollection } from "astro:content";
+
+import BaseLayout from "@/layouts/Base";
+import Header from "@/components/Header";
+import ListPosts from "@/components/ListPosts";
+import { getUniqueTags } from "@/utils";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("posts");
+  const uniqueTags = getUniqueTags(posts);
+
+  return uniqueTags.flatMap((tag) => {
+    const filterPosts = posts.filter((post) => post.data.tags.includes(tag));
+
+    return {
+      params: { tag },
+      props: { entry: filterPosts },
+    };
+  });
+}
+
+const { tag } = Astro.params;
+const { entry } = Astro.props;
+---
+
+<BaseLayout>
+  <section>
+    <Header>Filtered by tag: <span class="font-bold">{tag}</span></Header>
+    <ListPosts posts={entry} />
+  </section>
+</BaseLayout>
