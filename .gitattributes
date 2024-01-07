@@ -1,3 +1,8 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+# Language detection
 *.xsl linguist-detectable=false
+*.mdx linguist-detectable=false
+*.css linguist-detectable=false
+*.ts linguist-detectable=false
+*.js linguist-detectable=false
