@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 
 import BaseLayout from "@/layouts/Base";
-import Header from "@/components/Header";
 import ListPosts from "@/components/ListPosts";
 
 const posts = await getCollection("posts");
@@ -10,7 +9,7 @@ const posts = await getCollection("posts");
 
 <BaseLayout title="All Posts">
   <section>
-    <Header>All Posts</Header>
+    <h1>All Posts</h1>
     <ListPosts {posts} />
   </section>
 </BaseLayout>

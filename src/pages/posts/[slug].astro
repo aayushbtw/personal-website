@@ -2,7 +2,7 @@
 import { getCollection } from "astro:content";
 
 import BaseLayout from "@/layouts/Base";
-import Header from "@/components/Header";
+import FormatDate from "@/components/FormatDate";
 
 export async function getStaticPaths() {
   const post = await getCollection("posts");
@@ -19,9 +19,8 @@ const { Content } = await entry.render();
 <BaseLayout title={entry.data.title}>
   <section>
     <div>
-      <Header date={entry.data.date} class="leading-6 font-bold">
-        {entry.data.title}
-      </Header>
+      <p class="text-sm"><FormatDate date={entry.data.date} /></p>
+      <h1>{entry.data.title}</h1>
 
       {
         entry.data.tags.length > 0 && (
@@ -43,6 +42,7 @@ const { Content } = await entry.render();
       class:list={[
         "max-w-none text-secondary prose prose-invert ",
         "prose-headings:text-primary prose-p:text-secondary prose-headings:text-base",
+        "prose-headings:font-medium",
         "prose-hr:border-primary prose-tr:border-primary prose-thead:border-primary",
         "prose-li:my-0.5",
         "prose-a:text-secondary prose-a:underline-offset-4 prose-a:decoration-primary",

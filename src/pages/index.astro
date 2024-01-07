@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 
 import BaseLayout from "@/layouts/Base";
-import Header from "@/components/Header";
 import ListPosts from "@/components/ListPosts";
 
 const posts = await getCollection("posts");
@@ -12,7 +11,7 @@ export const title = "Home";
 
 <BaseLayout>
   <section>
-    <Header>Hi, I'm Aayush</Header>
+    <h1>Hi, I'm Aayush</h1>
     <div>
       <p>web enthusiast.</p>
       <p>
@@ -26,7 +25,7 @@ export const title = "Home";
   </section>
 
   <section>
-    <Header>Recent Posts</Header>
+    <h2>Recent Posts</h2>
     <ListPosts {posts} limit={5} />
   </section>
 </BaseLayout>
