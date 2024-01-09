@@ -24,7 +24,7 @@ const { Content } = await entry.render();
 
       {
         entry.data.tags.length > 0 && (
-          <div class="space-x-2 text-sm pt-4">
+          <div class="space-x-2 text-sm pt-2 font-medium">
             {entry.data.tags.map((tag) => (
               <a
                 href={`/posts/tag/${tag}`}
