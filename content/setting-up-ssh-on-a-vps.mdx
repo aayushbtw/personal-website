@@ -1,0 +1,133 @@
+export const metadata = {
+  title: "setting up ssh on a vps",
+  description: "a quick guide to setting up SSH on your VPS and keeping it safe",
+  date: "May 4, 2025"
+};
+
+SSH lets you safely connect to your VPS. It’s useful for running commands, updating files, and deploying apps. Here’s how to set it up.
+
+## Connect to Your VPS
+
+When you get a VPS, your provider will usually send:
+
+- An IP address (e.g. `192.0.2.123`)
+- A `root` username
+- A password or preloaded SSH key
+
+To connect:
+
+```bash
+ssh root@192.0.2.123
+````
+
+If prompted about the authenticity of the host, type `yes`.
+
+---
+
+## Create a New User
+
+Running everything as `root` is dangerous. Create a user with sudo rights:
+
+```bash
+adduser yourname
+usermod -aG sudo yourname
+```
+
+Switch to the new user:
+
+```bash
+su - yourname
+```
+
+---
+
+## Set Up SSH Keys
+
+On your **local machine**:
+
+```bash
+ssh-keygen -t ed25519 -C "you@example.com"
+```
+
+Then send your key to the VPS:
+
+```bash
+ssh-copy-id yourname@192.0.2.123
+```
+
+If needed, manually copy your public key (`~/.ssh/id_ed25519.pub`) to the server into `~/.ssh/authorized_keys`.
+
+Make sure permissions are strict:
+
+```bash
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+```
+
+---
+
+## Harden SSH Configuration
+
+Edit the SSH server config:
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+Recommended changes:
+
+```text
+PermitRootLogin no
+PasswordAuthentication no
+PubkeyAuthentication yes
+```
+
+Then restart SSH:
+
+```bash
+sudo systemctl restart ssh
+```
+
+---
+
+## Test Before You Close
+
+Do not log out yet, open a new terminal and test:
+
+```bash
+ssh yourname@192.0.2.123
+```
+
+Make sure you can log in before closing the root session.
+
+---
+
+## Change Default Port
+
+For a bit of extra stealth, change the default SSH port (22):
+
+```bash
+sudo nano /etc/ssh/sshd_config
+```
+
+Set:
+
+```text
+Port 2222
+```
+
+Restart:
+
+```bash
+sudo systemctl restart ssh
+```
+
+Then connect like this:
+
+```bash
+ssh -p 2222 yourname@192.0.2.123
+```
+
+---
+
+Your VPS is now set up with SSH and ready to use.
