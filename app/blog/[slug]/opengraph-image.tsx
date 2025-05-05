@@ -7,6 +7,7 @@ export const size = {
 };
 
 export const contentType = "image/png";
+export const runtime = "edge";
 
 export default async function Image({ params }: { params: { slug: string } }) {
   const { metadata } = await getPost(params.slug);
