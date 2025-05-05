@@ -1,5 +1,3 @@
-import path from "node:path";
-import fs from "node:fs";
 import type { Metadata } from "next";
 import { formatDate } from "@/lib/utils";
 import { getAllPosts, getPost } from "@/lib/post";
