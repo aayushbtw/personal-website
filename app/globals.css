@@ -26,6 +26,8 @@
 
 @layer base {
     * {
+        scrollbar-width: thin;
+        scrollbar-color: var(--muted) transparent;
         @apply border-border;
     }
     a {
