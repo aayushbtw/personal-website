@@ -32,7 +32,6 @@ export async function getAllRepos(repoNames: string[]) {
     repoNames.map(async (name) => {
       try {
         const repo = await getRepo(name);
-        console.log(repo);
         repos.push(repo);
       } catch (error) {
         console.log(error);
