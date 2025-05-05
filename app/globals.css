@@ -28,7 +28,7 @@
     * {
         scrollbar-width: thin;
         scrollbar-color: var(--muted) transparent;
-        @apply border-border;
+        @apply border-border selection:bg-muted;
     }
     a {
         @apply underline decoration-border underline-offset-[5px] hover:decoration-muted-foreground hover:underline-offset-4 transition-all duration-300 font-medium text-foreground/80;
