@@ -36,5 +36,5 @@
 }
 
 @utility container {
-    @apply max-w-xl w-full mx-auto px-2 py-6;
+    @apply max-w-xl w-full mx-auto px-2 pb-6;
 }

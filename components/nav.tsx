@@ -21,7 +21,7 @@ export function Nav() {
             href={item.href}
             key={item.name}
             className={cn(
-              "text-sm",
+              "text-base md:text-sm",
               isActive ? "text-foreground" : "text-muted-foreground",
             )}
           >
