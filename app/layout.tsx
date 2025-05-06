@@ -1,14 +1,10 @@
 import type { Metadata } from "next";
-import { Geist_Mono } from "next/font/google";
-import "./globals.css";
+import { GeistMono } from "geist/font/mono";
+
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/navbar";
 import { site } from "@/config/site";
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import "./globals.css";
 
 export const metadata: Metadata = {
   title: site.name,
@@ -25,7 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={cn(
-          geistMono.variable,
+          GeistMono.variable,
           "antialiased bg-background text-foreground font-mono",
           "text-sm",
         )}
