@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { GeistMono } from "geist/font/mono";
+import { GeistSans } from "geist/font/sans";
 
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/navbar";
@@ -22,6 +23,7 @@ export default function RootLayout({
       <body
         className={cn(
           GeistMono.variable,
+          GeistSans.variable,
           "antialiased bg-background text-foreground font-mono",
           "text-sm",
         )}
