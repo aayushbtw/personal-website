@@ -1,5 +1,14 @@
 import Link from "next/link";
 import { getAllPosts, getPost } from "@/lib/post";
+import { Badge } from "@/components/ui/badge";
+import { ArrowUpRightIcon } from "lucide-react";
+import { Section, SectionTitle, SectionContent } from "@/components/ui/section";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default async function Blog() {
   const posts = getAllPosts();
@@ -8,30 +17,39 @@ export default async function Blog() {
     posts.map(async (post) => {
       const { metadata } = await getPost(post.slug);
       return {
-        term: metadata.title,
+        title: metadata.title,
         date: metadata.date,
+        description: metadata.description,
         href: "blog/" + post.slug,
       };
     }),
   );
 
   return (
-    <section className="container">
-      <h4 className="sm:text-xl text-lg text-balance sm:mb-4 mb-2">Blog</h4>
-
-      <div className="flex flex-col space-y-4">
+    <Section>
+      <SectionTitle>Blog Posts</SectionTitle>
+      <SectionContent className="flex flex-col gap-4">
         {items.map((item) => (
-          <div
-            key={item.term}
-            className="flex flex-col gap-1 sm:gap-0 sm:flex-row sm:justify-between"
+          <Link
+            key={item.title}
+            href={item.href}
+            target="_self"
+            className="no-underline"
           >
-            <Link href={item.href} className="lowercase">
-              {item.term}
-            </Link>
-            <span className="text-muted-foreground">{item.date}</span>
-          </div>
+            <Card>
+              <CardHeader>
+                <CardTitle>
+                  <span>{item.title}</span>
+                  <ArrowUpRightIcon className="size-4 text-muted-foreground/50" />
+                </CardTitle>
+                <CardDescription>{item.description}</CardDescription>
+              </CardHeader>
+
+              <Badge>{item.date}</Badge>
+            </Card>
+          </Link>
         ))}
-      </div>
-    </section>
+      </SectionContent>
+    </Section>
   );
 }

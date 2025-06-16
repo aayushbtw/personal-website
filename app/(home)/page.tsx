@@ -4,6 +4,12 @@ import { Badge } from "@/components/ui/badge";
 import { ArrowUpRightIcon, MapPinIcon } from "lucide-react";
 import { getAllRepos } from "@/lib/github";
 import { Section, SectionTitle, SectionContent } from "@/components/ui/section";
+import {
+  Card,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 
 export default function Home() {
   return (
@@ -47,8 +53,13 @@ function Hero() {
 function Work() {
   const items = [
     {
-      term: "Web dev at netision",
-      description: "2024 - present",
+      name: "Netision",
+      description: "Full-stack web developer",
+      href: "https://www.netision.com/",
+      duration: {
+        from: "2024",
+        to: "Present",
+      },
     },
   ];
   return (
@@ -56,12 +67,28 @@ function Work() {
       <SectionTitle>Work</SectionTitle>
       <SectionContent className="flex flex-col gap-4">
         {items.map((item) => (
-          <div key={item.term} className="flex justify-between">
-            <div className="text-primary-foreground">{item.term}</div>
-            <div className="md:col-span-3 text-muted-foreground">
-              {item.description}
-            </div>
-          </div>
+          <Link
+            key={item.name}
+            href={item.href}
+            target="_blank"
+            className="no-underline"
+          >
+            <Card>
+              <CardHeader>
+                <CardTitle>
+                  <span>{item.name}</span>
+                  <ArrowUpRightIcon className="size-4 text-muted-foreground/50" />
+                </CardTitle>
+                <CardDescription>{item.description}</CardDescription>
+              </CardHeader>
+
+              <div className="flex gap-1">
+                <Badge>{item.duration.from}</Badge>
+                <span className="text-muted-foreground">&mdash;</span>
+                <Badge>{item.duration.to}</Badge>
+              </div>
+            </Card>
+          </Link>
         ))}
       </SectionContent>
     </Section>
@@ -86,17 +113,19 @@ async function Projects() {
             key={item.name}
             href={item.href}
             target="_blank"
-            className="group no-underline flex justify-between items-start border-l-2 border-transparent hover:border-border pl-0 hover:pl-2 transition-all duration-300"
+            className="no-underline"
           >
-            <div>
-              <span className="flex items-center gap-1 font-medium text-primary-foreground mb-1 leading-none">
-                <span>{item.name}</span>
-                <ArrowUpRightIcon className="size-4 text-muted-foreground/50" />
-              </span>
-              <p className="text-muted-foreground">{item.description}</p>
-            </div>
+            <Card>
+              <CardHeader>
+                <CardTitle>
+                  <span>{item.name}</span>
+                  <ArrowUpRightIcon className="size-4 text-muted-foreground/50" />
+                </CardTitle>
+                <CardDescription>{item.description}</CardDescription>
+              </CardHeader>
 
-            <Badge>{item.language}</Badge>
+              <Badge>{item.language}</Badge>
+            </Card>
           </Link>
         ))}
       </SectionContent>
