@@ -1,4 +1,4 @@
-export function Card({ className, ...props }: React.ComponentProps<"div">) {
+export function Card({ ...props }: React.ComponentProps<"div">) {
   return (
     <div
       data-slot="card"
@@ -8,14 +8,11 @@ export function Card({ className, ...props }: React.ComponentProps<"div">) {
   );
 }
 
-export function CardHeader({
-  className,
-  ...props
-}: React.ComponentProps<"div">) {
+export function CardHeader({ ...props }: React.ComponentProps<"div">) {
   return <div data-slot="card-header" {...props} />;
 }
 
-export function CardTitle({ className, ...props }: React.ComponentProps<"h4">) {
+export function CardTitle({ ...props }: React.ComponentProps<"h4">) {
   return (
     <h4
       data-slot="card-title"
@@ -25,10 +22,7 @@ export function CardTitle({ className, ...props }: React.ComponentProps<"h4">) {
   );
 }
 
-export function CardDescription({
-  className,
-  ...props
-}: React.ComponentProps<"p">) {
+export function CardDescription({ ...props }: React.ComponentProps<"p">) {
   return (
     <p
       data-slot="card-description"
